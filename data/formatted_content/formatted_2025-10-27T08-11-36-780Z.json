@@ -1,0 +1,59 @@
+{
+  "title": "Vibe Coding Explained: Tools and Guides | Google Cloud",
+  "originalContentLength": 14996,
+  "formattedContent": [
+    {
+      "headline": "📄 Thread Intro",
+      "content": "From Zero to Deploy:\n\nVibe coding is here. Build apps faster with AI!\n\nHere’s how to leverage it, with tools from Google Cloud, to ship products in days, not months:"
+    },
+    {
+      "headline": "Vibe Coding",
+      "content": "Turn plain language into functional code. Imagine: \"build a user login form\" & AI does the rest. • Faster prototyping • Lower barrier to entry Idea to execution, instantly!"
+    },
+    {
+      "headline": "AI Studio",
+      "content": "No-code app generation from a single prompt. Describe it, deploy it. Perfect for rapid prototyping & sharing. From zero to live app in minutes!"
+    },
+    {
+      "headline": "Firebase Studio",
+      "content": "Full-stack app creation with integrated backend. Database, auth & more, all AI-powered. Launch production-ready apps, fast!"
+    },
+    {
+      "headline": "Gemini Code Assist",
+      "content": "AI-powered coding inside your IDE. Generates, explains, & tests code. Turbocharge your existing workflow!"
+    },
+    {
+      "headline": "\"Pure\" Vibe Coding",
+      "content": "Trust the AI output for rapid ideation. Great for throwaway weekend projects. Speed is the only goal!"
+    },
+    {
+      "headline": "Responsible AI-Assisted Dev",
+      "content": "Use AI as a pair programmer. Guide it, review the code, own the result. Quality & speed, combined!"
+    },
+    {
+      "headline": "Vibe Coding Workflow",
+      "content": "1. Describe the goal 2. AI generates code 3. Execute & observe 4. Refine with feedback Repeat until done. Iterate faster, build better!"
+    },
+    {
+      "headline": "Traditional vs Vibe Coding",
+      "content": "Traditional = manual, precise. Vibe = natural language, AI-assisted. Focus on outcome, not implementation!"
+    },
+    {
+      "headline": "Choosing Your Tool",
+      "content": "AI Studio (fast ideas), Firebase Studio (full apps), Gemini (existing projects). Match the tool to the task!"
+    },
+    {
+      "headline": "AI Studio",
+      "content": "Describe your app, get a live preview, refine with prompts, deploy to Cloud Run. Share your creation with one click!"
+    },
+    {
+      "headline": "Firebase Studio",
+      "content": "Build complete applications with a robust backend. Perfect for scalable solutions. Go from idea to production, seamlessly!"
+    },
+    {
+      "headline": "/12 Section",
+      "content": "Vibe coding is NOT replacing programmers. It's augmenting them. Learn to leverage these tools. Adapt or be left behind. The future is now."
+    }
+  ],
+  "timestamp": "2025-10-27T08:11:36.780Z"
+}
