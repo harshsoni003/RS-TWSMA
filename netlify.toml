@@ -12,6 +12,10 @@
   # Node.js version
   NODE_VERSION = "18"
 
+# Plugin to automatically install function dependencies
+[[plugins]]
+  package = "@netlify/plugin-functions-install-core"
+
 # Redirect all server-side requests to Netlify Functions
 [[redirects]]
   from = "/api/*"
