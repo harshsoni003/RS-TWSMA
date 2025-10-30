@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import { API_ENDPOINTS } from '../config/api';
 
 const FormattedContentPage = () => {
   const navigate = useNavigate();
@@ -28,16 +29,26 @@ const FormattedContentPage = () => {
 
       try {
         console.log('Formatting content with Gemini AI...');
-        const response = await axios.post('http://localhost:5000/api/format-content', {
+        const response = await axios.post(API_ENDPOINTS.FORMAT_CONTENT, {
           content: content,
-          title: title
+          title: title,
+          url: url
         }, {
           timeout: 60000 // 60 seconds timeout
         });
 
-        if (response.data.success) {
-          setFormattedContent(response.data.formattedContent);
-          setOriginalData(response.data.originalContent);
+        if (response.data.formattedContent) {
+          // Parse the formatted content into an array of tweets
+          const threadText = response.data.formattedContent;
+          const tweets = threadText.split(/\n\n/).filter(tweet => tweet.trim().length > 0);
+          
+          const formattedTweets = tweets.map((tweet, index) => ({
+            headline: `Tweet ${index + 1}`,
+            content: tweet.trim()
+          }));
+          
+          setFormattedContent(formattedTweets);
+          setOriginalData({ title, url, content: content.substring(0, 1000) });
         } else {
           throw new Error('Failed to format content');
         }

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import axios from 'axios';
+import { API_ENDPOINTS } from '../config/api';
 
 const ScrapedContentPage = () => {
   const { encodedUrl } = useParams();
@@ -21,13 +22,13 @@ const ScrapedContentPage = () => {
 
       try {
         console.log('Scraping URL:', url);
-        const response = await axios.get('http://localhost:5000/api/scrape', {
+        const response = await axios.get(API_ENDPOINTS.SCRAPE, {
           params: { url },
           timeout: 90000 // Increased to 90 seconds to match server timeout
         });
 
-        if (response.data.success) {
-          setScrapedData(response.data.data);
+        if (response.data) {
+          setScrapedData(response.data);
         } else {
           throw new Error('Failed to scrape content');
         }
@@ -66,7 +67,7 @@ const ScrapedContentPage = () => {
   };
 
   const navigateToFormattedContent = () => {
-    if (!scrapedData?.bodyText) {
+    if (!scrapedData?.textContent) {
       alert('No content available to format');
       return;
     }
@@ -74,7 +75,7 @@ const ScrapedContentPage = () => {
     // Navigate to formatted content page with content as URL params
     const params = new URLSearchParams({
       title: scrapedData.title || title,
-      content: scrapedData.bodyText,
+      content: scrapedData.textContent,
       url: url
     });
     
@@ -177,15 +178,15 @@ const ScrapedContentPage = () => {
             </div>
 
             {/* Full Content */}
-            {scrapedData.bodyText && (
+            {scrapedData.textContent && (
               <div className="bg-white rounded-lg shadow-md p-6">
                 <h2 className="text-2xl font-bold text-green-800 mb-4 flex items-center gap-2">
-                  📝 Complete Content ({scrapedData.bodyText.length.toLocaleString()} characters)
+                  📝 Complete Content ({scrapedData.textContent.length.toLocaleString()} characters)
                 </h2>
                 <div className="bg-gray-50 rounded-lg p-6 border">
                   <div className="prose max-w-none">
                     <p className="text-gray-900 leading-relaxed whitespace-pre-wrap text-base">
-                      {scrapedData.bodyText}
+                      {scrapedData.textContent}
                     </p>
                   </div>
                 </div>

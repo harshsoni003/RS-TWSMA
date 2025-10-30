@@ -25,6 +25,7 @@
     "server": "node server.js",
     "dev": "concurrently \"npm run server\" \"npm start\"",
     "build": "react-scripts build",
+    "build:netlify": "npm run build && cd netlify/functions && npm install",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

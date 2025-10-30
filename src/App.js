@@ -6,6 +6,7 @@ import PostList from './components/PostList';
 import ScrapedContentPage from './pages/ScrapedContentPage';
 import FormattedContentPage from './pages/FormattedContentPage';
 import { rankPosts } from './utils/ranking';
+import { API_ENDPOINTS } from './config/api';
 
 function HomePage() {
   const [posts, setPosts] = useState([]);
@@ -15,9 +16,7 @@ function HomePage() {
   const [searchHistory, setSearchHistory] = useState([]);
   const [isLoadingHistory, setIsLoadingHistory] = useState(false);
 
-  // Backend API configuration
-  const BACKEND_URL = 'http://localhost:5000/api/search';
-  const HISTORY_URL = 'http://localhost:5000/api/search-history';
+  // API configuration using environment-aware endpoints
 
   const searchPosts = async (query) => {
     setIsLoading(true);
@@ -26,21 +25,21 @@ function HomePage() {
 
     try {
       // Make API call to our backend proxy
-      const response = await axios.get(BACKEND_URL, {
+      const response = await axios.get(API_ENDPOINTS.SEARCH, {
         params: {
           q: query
         }
       });
 
-      if (response.data.organic_results) {
-        const results = response.data.organic_results.map(result => ({
+      if (response.data.results) {
+        const results = response.data.results.map(result => ({
           title: result.title || '',
           link: result.link || '',
-          snippet: result.snippet || ''
+          snippet: result.snippet || '',
+          relevanceScore: result.relevanceScore || 0
         }));
 
-        const rankedResults = rankPosts(query, results);
-        setPosts(rankedResults);
+        setPosts(results);
         
         // Refresh search history after new search
         loadSearchHistory();
@@ -59,9 +58,9 @@ function HomePage() {
   const loadSearchHistory = async () => {
     setIsLoadingHistory(true);
     try {
-      const response = await axios.get(HISTORY_URL);
-      if (response.data.success) {
-        setSearchHistory(response.data.history);
+      const response = await axios.get(API_ENDPOINTS.SEARCH_HISTORY);
+      if (response.data && Array.isArray(response.data)) {
+        setSearchHistory(response.data);
       }
     } catch (err) {
       console.error('Error loading search history:', err);
