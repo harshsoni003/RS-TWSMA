@@ -9,7 +9,6 @@ const FormattedContentPage = () => {
   const [formattedContent, setFormattedContent] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [originalData, setOriginalData] = useState(null);
 
   // Get the URL, title, and content from query parameters
   const url = searchParams.get('url') || '';
@@ -48,7 +47,6 @@ const FormattedContentPage = () => {
           }));
           
           setFormattedContent(formattedTweets);
-          setOriginalData({ title, url, content: content.substring(0, 1000) });
         } else {
           throw new Error('Failed to format content');
         }
@@ -71,7 +69,7 @@ const FormattedContentPage = () => {
     };
 
     formatContent();
-  }, [content, title]);
+  }, [content, title, url]); // Added url to dependency array
 
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);

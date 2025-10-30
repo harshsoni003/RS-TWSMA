@@ -5,7 +5,6 @@ import SearchInput from './components/SearchInput';
 import PostList from './components/PostList';
 import ScrapedContentPage from './pages/ScrapedContentPage';
 import FormattedContentPage from './pages/FormattedContentPage';
-import { rankPosts } from './utils/ranking';
 import { API_ENDPOINTS } from './config/api';
 
 function HomePage() {
